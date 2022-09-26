@@ -26,7 +26,7 @@ const signUpUser = async (req: Request, res: Response) => {
       password: hashedPassword,
     }).save();
     return res.status(200).json({ message: "Sign up successful" });
-  } catch (err) {
+  } catch (err: any) {
     throw new BadRequestError(err.message || "Fix backend");
   }
 };
