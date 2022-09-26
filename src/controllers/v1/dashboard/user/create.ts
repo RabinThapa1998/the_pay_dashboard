@@ -27,7 +27,7 @@ const signUpUser = async (req: Request, res: Response) => {
     }).save();
     return res.status(200).json({ message: "Sign up successful" });
   } catch (err) {
-    throw new Error("something went wrong");
+    throw new BadRequestError(err.message || "Fix backend");
   }
 };
 
@@ -51,7 +51,7 @@ const signInUser = async (req: Request, res: Response) => {
     res.cookie("accessToken", token);
     return res.status(200).json({ mess: "sign in successfully", token: token });
   } catch (err: any) {
-    throw new BadRequestError(err.message);
+    throw new BadRequestError(err.message || "Fix backend");
   }
 };
 
