@@ -8,7 +8,7 @@ const createPayment = async (req: Request, res: Response) => {
     const { payment_type, amount, vote, contestent } = req.body;
     const _payment = await Payment.findOne({ contestent });
     if (_payment) {
-      return res.status(422).json({ message: "Payment already made" });
+      throw new BadRequestError("Payment already made");
     }
     const _contestent = await Contestent.findById(contestent);
     if (!_contestent) {
