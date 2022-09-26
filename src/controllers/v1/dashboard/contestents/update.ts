@@ -8,7 +8,7 @@ const updateContestent = async (req: Request, res: Response) => {
     const { full_name, age, address, program, phone, email } = req.body;
     const contestent = await Contestent.findOne({ _id: id });
     if (!contestent) {
-      return res.status(422).json({ message: "No contestent found" });
+      throw new BadRequestError("Contestent not found");
     }
 
     contestent.email = email || contestent.email;
