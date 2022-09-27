@@ -4,7 +4,7 @@ import { BadRequestError } from "../../../../common/errors/bad-request-error";
 
 const getPayments = async (req: Request, res: Response) => {
   try {
-    const payment = await Payment.find().populate("contestent");
+    const payment = await Payment.find();
     if (!payment) {
       throw new BadRequestError("Payments empty");
     }

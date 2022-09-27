@@ -5,7 +5,9 @@ import { Contestent } from "../../../../models/contestents";
 const getOneContestent = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const contestent = await Contestent.findById(id).populate("program");
+    const contestent = await Contestent.findById(id)
+      .populate("program")
+      .populate("payment");
     if (!contestent) {
       throw new BadRequestError("Contestent not found");
     }

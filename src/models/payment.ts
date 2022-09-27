@@ -13,17 +13,15 @@ enum paymentEnum {
 }
 // creating an interface representing a document in mongodb
 export interface paymentAttrs {
-  payment_type: paymentEnum;
-  amount: number;
-  vote: number;
-  contestent: ObjectId;
+  payment_type?: paymentEnum;
+  amount?: number;
+  vote?: number;
 }
 
 export interface paymentDoc extends Document, paymentAttrs {
   payment_type: paymentEnum;
   amount: number;
   vote: number;
-  contestent: ObjectId;
   active: boolean;
   createdAt: Date;
   updatedAt: Date;
@@ -42,17 +40,15 @@ const paymentSchema = new Schema<paymentDoc>(
     },
     amount: {
       type: Number,
-      required: true,
+      // required: true,
+      default: 0,
     },
     vote: {
       type: Number,
-      required: true,
+      // required: true,
+      default: 0,
     },
-    contestent: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Contestent",
-      required: true,
-    },
+
     active: {
       type: Boolean,
       default: true,

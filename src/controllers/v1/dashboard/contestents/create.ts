@@ -23,11 +23,16 @@ const createContestent = async (
     if (contestent) {
       throw new BadRequestError("Contestent already exists");
     }
-
+    //create payment for that contestent and assign the payment id to the contestent
+    const payment = await Payment.build({}).save();
+    if (!payment) {
+      throw new BadRequestError("payment create failed");
+    }
     const _contestent = await Contestent.build({
       email,
       full_name,
       program,
+      payment: payment._id,
       address,
       age,
       phone,
@@ -37,9 +42,10 @@ const createContestent = async (
       throw new BadRequestError("Contestent not created");
     }
 
-    return res
-      .status(200)
-      .json({ message: "Contestent added successfully", data: _contestent });
+    return res.status(200).json({
+      message: "Contestent added successfully",
+      data: _contestent,
+    });
   } catch (error) {
     throw new BadRequestError(
       (error as any).message

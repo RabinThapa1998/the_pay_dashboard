@@ -5,6 +5,7 @@ import { Contestent } from "../../../../models/contestents";
 const getContestents = async (req: Request, res: Response) => {
   try {
     const contestents = await Contestent.find();
+
     if (!contestents) {
       throw new BadRequestError("Contestents not found");
     }

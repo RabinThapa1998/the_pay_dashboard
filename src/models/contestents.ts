@@ -16,6 +16,7 @@ export interface contestentAttrs {
   age?: number;
   address?: string;
   program: ObjectId;
+  payment: ObjectId;
 }
 
 export interface contestentDoc extends Document, contestentAttrs {
@@ -26,6 +27,7 @@ export interface contestentDoc extends Document, contestentAttrs {
   age: number;
   address: string;
   program: ObjectId;
+  payment: ObjectId;
 
   active: boolean;
   createdAt: Date;
@@ -59,6 +61,11 @@ const contestentSchema = new Schema<contestentDoc>(
     program: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Program",
+      required: true,
+    },
+    payment: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Payment",
       required: true,
     },
     age: {
