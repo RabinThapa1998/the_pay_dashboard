@@ -26,7 +26,6 @@ export interface contestentDoc extends Document, contestentAttrs {
   age: number;
   address: string;
   program: ObjectId;
-  vote: number;
 
   active: boolean;
   createdAt: Date;
@@ -61,10 +60,6 @@ const contestentSchema = new Schema<contestentDoc>(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Program",
       required: true,
-    },
-    vote: {
-      type: Number,
-      default: 0,
     },
     age: {
       type: Number,
