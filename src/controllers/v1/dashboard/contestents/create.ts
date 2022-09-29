@@ -24,7 +24,9 @@ const createContestent = async (
       throw new BadRequestError("Contestent already exists");
     }
     //create payment for that contestent and assign the payment id to the contestent
-    const payment = await Payment.build({}).save();
+    const payment = await Payment.build({
+      payments: [{}],
+    }).save();
     if (!payment) {
       throw new BadRequestError("payment create failed");
     }

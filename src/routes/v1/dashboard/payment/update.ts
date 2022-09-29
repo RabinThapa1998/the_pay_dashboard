@@ -5,7 +5,7 @@ import { isValidObjectId } from "../../../../services/object-id-validate";
 import { validateRequest } from "../../../../common/middlewares/validate-request";
 
 const router = Router();
-router.patch(
+router.post(
   "/:id",
   [
     param("id")

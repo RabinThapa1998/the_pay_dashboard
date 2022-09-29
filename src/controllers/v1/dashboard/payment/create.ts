@@ -4,16 +4,10 @@ import { Payment } from "../../../../models/payment";
 
 const createPayment = async (req: Request, res: Response) => {
   try {
-    const { payment_type, amount, vote, contestent } = req.body;
-    const _payment = await Payment.findOne({ contestent });
-    if (_payment) {
-      throw new BadRequestError("Payment Account already created");
-    }
+    const { payment_type, amount, vote } = req.body;
 
     const payment = Payment.build({
-      payment_type,
-      amount,
-      vote,
+      payments: [payment_type, amount, vote],
     });
     await payment.save();
     if (!payment) {

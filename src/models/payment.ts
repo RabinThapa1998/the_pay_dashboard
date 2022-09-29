@@ -13,18 +13,22 @@ enum paymentEnum {
 }
 // creating an interface representing a document in mongodb
 export interface paymentAttrs {
-  payment_type?: paymentEnum;
-  amount?: number;
-  vote?: number;
+  payments: {
+    payment_type?: paymentEnum;
+    amount?: number;
+    vote?: number;
+  }[];
 }
 
 export interface paymentDoc extends Document, paymentAttrs {
-  payment_type: paymentEnum;
-  amount: number;
-  vote: number;
-  active: boolean;
+  payments: {
+    payment_type?: paymentEnum;
+    amount?: number;
+    vote?: number;
+  }[];
   createdAt: Date;
   updatedAt: Date;
+  active: boolean;
 }
 
 interface paymentModel extends Model<paymentAttrs> {
@@ -33,22 +37,25 @@ interface paymentModel extends Model<paymentAttrs> {
 
 const paymentSchema = new Schema<paymentDoc>(
   {
-    payment_type: {
-      type: String,
-      enum: paymentEnum,
-      default: paymentEnum.esewa,
-    },
-    amount: {
-      type: Number,
-      // required: true,
-      default: 0,
-    },
-    vote: {
-      type: Number,
-      // required: true,
-      default: 0,
-    },
-
+    payments: [
+      {
+        payment_type: {
+          type: String,
+          enum: paymentEnum,
+          default: paymentEnum.esewa,
+        },
+        amount: {
+          type: Number,
+          // required: true,
+          default: 0,
+        },
+        vote: {
+          type: Number,
+          // required: true,
+          default: 0,
+        },
+      },
+    ],
     active: {
       type: Boolean,
       default: true,
