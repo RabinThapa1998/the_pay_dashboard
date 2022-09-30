@@ -12,7 +12,7 @@ export interface contestentAttrs {
   email: string;
   phone?: string;
   full_name: string;
-  photoUrl?: string;
+  photo_url?: string;
   age?: number;
   address?: string;
   program: ObjectId;
@@ -23,7 +23,7 @@ export interface contestentDoc extends Document, contestentAttrs {
   email: string;
   phone: string;
   full_name: string;
-  photoUrl: string;
+  photo_url: string;
   age: number;
   address: string;
   program: ObjectId;
@@ -53,7 +53,7 @@ const contestentSchema = new Schema<contestentDoc>(
       type: String,
       required: true,
     },
-    photoUrl: {
+    photo_url: {
       type: String,
       default:
         "https://bitpointx.s3-ap-southeast-1.amazonaws.com/config/transparent_logo.png",
