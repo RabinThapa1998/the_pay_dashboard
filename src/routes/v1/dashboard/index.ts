@@ -8,8 +8,8 @@ import { indexUserRouter } from "./user";
 const router = Router();
 
 router.use("/user", indexUserRouter);
-router.use("/program", indexProgramRouter);
-router.use("/contestent", indexContestentRouter);
-router.use("/payment", indexPaymentRouter);
+router.use("/programs", indexProgramRouter);
+router.use("/contestents", indexContestentRouter);
+router.use("/payments", indexPaymentRouter);
 
 export { router as indexDashboardRouter };

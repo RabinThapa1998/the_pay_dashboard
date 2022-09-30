@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { BadRequestError } from "../../../../common/errors/bad-request-error";
+import { Contestent } from "../../../../models/contestents";
 import { Program } from "../../../../models/programs";
 
 const getOneProgram = async (req: Request, res: Response) => {
@@ -11,7 +12,9 @@ const getOneProgram = async (req: Request, res: Response) => {
       throw new BadRequestError("Program not found");
     }
 
-    return res.status(200).json({ message: "Program", data: program });
+    const contestents = await Contestent.find({ program: id });
+
+    return res.status(200).json({ data: { program, contestents } });
   } catch (error) {
     throw new BadRequestError(
       (error as any).message
