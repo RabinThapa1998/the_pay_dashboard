@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { BadRequestError } from "../../../../common/errors/bad-request-error";
-import { Contestent } from "../../../../models/contestents";
+import { Contestant } from "../../../../models/contestants";
 import { Program } from "../../../../models/programs";
 
 const getOneProgram = async (req: Request, res: Response) => {
@@ -12,14 +12,14 @@ const getOneProgram = async (req: Request, res: Response) => {
       throw new BadRequestError("Program not found");
     }
 
-    const contestents = await Contestent.find({ program: id });
+    const contestants = await Contestant.find({ program: id });
 
-    return res.status(200).json({ data: { program, contestents } });
+    return res.status(200).json({ data: { program, contestants } });
   } catch (error) {
     throw new BadRequestError(
       (error as any).message
         ? (error as any).message
-        : "Failed to create Contestent. Debug Backend!"
+        : "Failed to create Contestant. Debug Backend!"
     );
   }
 };

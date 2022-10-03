@@ -1,35 +1,35 @@
 import { Request, Response } from "express";
 import { BadRequestError } from "../../../../common/errors/bad-request-error";
-import { Contestent } from "../../../../models/contestents";
+import { Contestant } from "../../../../models/contestants";
 
-const updateContestent = async (req: Request, res: Response) => {
+const updateContestant = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const { full_name, age, address, program, phone, email } = req.body;
-    const contestent = await Contestent.findOne({ _id: id });
-    if (!contestent) {
-      throw new BadRequestError("Contestent not found");
+    const contestant = await Contestant.findOne({ _id: id });
+    if (!contestant) {
+      throw new BadRequestError("Contestant not found");
     }
 
-    contestent.email = email || contestent.email;
-    contestent.full_name = full_name || contestent.full_name;
-    contestent.program = program || contestent.program;
-    contestent.address = address || contestent.address;
-    contestent.age = age || contestent.age;
-    contestent.phone = phone || contestent.phone;
+    contestant.email = email || contestant.email;
+    contestant.full_name = full_name || contestant.full_name;
+    contestant.program = program || contestant.program;
+    contestant.address = address || contestant.address;
+    contestant.age = age || contestant.age;
+    contestant.phone = phone || contestant.phone;
 
-    await contestent.save();
+    await contestant.save();
 
     return res
       .status(200)
-      .json({ message: "Updated successfully", data: contestent });
+      .json({ message: "Updated successfully", data: contestant });
   } catch (error) {
     throw new BadRequestError(
       (error as any).message
         ? (error as any).message
-        : "Failed to create Contestent. Debug Backend!"
+        : "Failed to create Contestant. Debug Backend!"
     );
   }
 };
 
-export { updateContestent as updateContestentHandler };
+export { updateContestant as updateContestantHandler };

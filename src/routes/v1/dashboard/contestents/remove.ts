@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { param } from "express-validator";
-import { deleteContestentHandler } from "../../../../controllers/v1/dashboard/contestents/remove";
+import { deleteContestantHandler } from "../../../../controllers/v1/dashboard/contestents/remove";
 import { isValidObjectId } from "../../../../services/object-id-validate";
 
 const router = Router();
@@ -12,7 +12,7 @@ router.delete(
       .custom((id) => isValidObjectId(id))
       .withMessage("Valid class id must be provided"),
   ],
-  deleteContestentHandler
+  deleteContestantHandler
 );
 
-export { router as deleteContestentRouter };
+export { router as deleteContestantRouter };

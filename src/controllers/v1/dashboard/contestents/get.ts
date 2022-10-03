@@ -1,23 +1,23 @@
 import { Request, Response } from "express";
 import { BadRequestError } from "../../../../common/errors/bad-request-error";
-import { Contestent } from "../../../../models/contestents";
+import { Contestant } from "../../../../models/contestants";
 
-const getContestents = async (req: Request, res: Response) => {
+const getContestants = async (req: Request, res: Response) => {
   try {
-    const contestents = await Contestent.find();
+    const contestants = await Contestant.find();
 
-    if (!contestents) {
-      throw new BadRequestError("Contestents not found");
+    if (!contestants) {
+      throw new BadRequestError("Contestants not found");
     }
 
-    return res.status(200).json({ data: contestents });
+    return res.status(200).json({ data: contestants });
   } catch (error) {
     throw new BadRequestError(
       (error as any).message
         ? (error as any).message
-        : "Failed to create Contestent. Debug Backend!"
+        : "Failed to create Contestant. Debug Backend!"
     );
   }
 };
 
-export { getContestents as getContestentsHandler };
+export { getContestants as getContestantsHandler };

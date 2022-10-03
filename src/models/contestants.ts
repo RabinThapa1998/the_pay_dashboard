@@ -8,7 +8,7 @@ import mongoose, {
 } from "mongoose";
 
 // creating an interface representing a document in mongodb
-export interface contestentAttrs {
+export interface contestantAttrs {
   email: string;
   phone?: string;
   full_name: string;
@@ -19,7 +19,7 @@ export interface contestentAttrs {
   payment: ObjectId;
 }
 
-export interface contestentDoc extends Document, contestentAttrs {
+export interface contestantDoc extends Document, contestantAttrs {
   email: string;
   phone: string;
   full_name: string;
@@ -34,11 +34,11 @@ export interface contestentDoc extends Document, contestentAttrs {
   updatedAt: Date;
 }
 
-interface contestentModel extends Model<contestentAttrs> {
-  build(attrs: contestentAttrs): contestentDoc;
+interface contestantModel extends Model<contestantAttrs> {
+  build(attrs: contestantAttrs): contestantDoc;
 }
 
-const contestentSchema = new Schema<contestentDoc>(
+const contestantSchema = new Schema<contestantDoc>(
   {
     email: {
       type: String,
@@ -95,17 +95,17 @@ const contestentSchema = new Schema<contestentDoc>(
 );
 
 //creating a Model corresponding to the doc interface
-interface contestentModel extends Model<contestentAttrs> {
-  build(attrs: contestentAttrs): contestentDoc;
+interface contestantModel extends Model<contestantAttrs> {
+  build(attrs: contestantAttrs): contestantDoc;
 }
 
-contestentSchema.statics.build = (attrs: contestentAttrs) => {
-  return new Contestent(attrs);
+contestantSchema.statics.build = (attrs: contestantAttrs) => {
+  return new Contestant(attrs);
 };
 
-const Contestent = model<contestentDoc, contestentModel>(
-  "Contestent",
-  contestentSchema
+const Contestant = model<contestantDoc, contestantModel>(
+  "Contestant",
+  contestantSchema
 );
 
-export { Contestent };
+export { Contestant };

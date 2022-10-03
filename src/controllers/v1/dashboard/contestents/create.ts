@@ -1,10 +1,10 @@
 import { NextFunction, Request, Response } from "express";
 import { BadRequestError } from "../../../../common/errors/bad-request-error";
-import { Contestent } from "../../../../models/contestents";
+import { Contestant } from "../../../../models/contestants";
 import { Payment } from "../../../../models/payment";
 import { Program } from "../../../../models/programs";
 
-const createContestent = async (
+const createContestant = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -18,19 +18,19 @@ const createContestent = async (
       return res.status(422).json({ message: "Program not found" });
     }
 
-    const contestent = await Contestent.findOne({ email });
+    const contestant = await Contestant.findOne({ email });
 
-    if (contestent) {
-      throw new BadRequestError("Contestent already exists");
+    if (contestant) {
+      throw new BadRequestError("Contestant already exists");
     }
-    //create payment for that contestent and assign the payment id to the contestent
+    //create payment for that contestant and assign the payment id to the contestant
     const payment = await Payment.build({
       payments: [{}],
     }).save();
     if (!payment) {
       throw new BadRequestError("payment create failed");
     }
-    const _contestent = await Contestent.build({
+    const _contestant = await Contestant.build({
       email,
       full_name,
       program,
@@ -40,21 +40,21 @@ const createContestent = async (
       phone,
     }).save();
 
-    if (!_contestent) {
-      throw new BadRequestError("Contestent not created");
+    if (!_contestant) {
+      throw new BadRequestError("Contestant not created");
     }
 
     return res.status(200).json({
-      message: "Contestent added successfully",
-      data: _contestent,
+      message: "Contestant added successfully",
+      data: _contestant,
     });
   } catch (error) {
     throw new BadRequestError(
       (error as any).message
         ? (error as any).message
-        : "Failed to create Contestent. Debug Backend!"
+        : "Failed to create Contestant. Debug Backend!"
     );
   }
 };
 
-export { createContestent as createContestentHandler };
+export { createContestant as createContestantHandler };

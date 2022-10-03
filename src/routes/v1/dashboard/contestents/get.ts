@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { getContestentsHandler } from "../../../../controllers/v1/dashboard/contestents/get";
+import { getContestantsHandler } from "../../../../controllers/v1/dashboard/contestents/get";
 
 const router = Router();
-router.get("/", getContestentsHandler);
+router.get("/", getContestantsHandler);
 
-export { router as getContestentsRouter };
+export { router as getContestantsRouter };

@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { check, validationResult } from "express-validator";
 import { validateRequest } from "../../../../common/middlewares/validate-request";
-import { createContestentHandler } from "../../../../controllers/v1/dashboard/contestents/create";
+import { createContestantHandler } from "../../../../controllers/v1/dashboard/contestents/create";
 
 const validateFields = [
   check("full_name").trim().not().isEmpty().withMessage("Fullname is required"),
@@ -10,5 +10,5 @@ const validateFields = [
 ];
 
 const router = Router();
-router.post("/", validateFields, validateRequest, createContestentHandler);
-export { router as createContestentRouter };
+router.post("/", validateFields, validateRequest, createContestantHandler);
+export { router as createContestantRouter };

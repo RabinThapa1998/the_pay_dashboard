@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { param } from "express-validator";
-import { getOneContestentHandler } from "../../../../controllers/v1/dashboard/contestents/get-one";
+import { getOneContestantHandler } from "../../../../controllers/v1/dashboard/contestents/get-one";
 import { isValidObjectId } from "../../../../services/object-id-validate";
 
 const router = Router();
@@ -12,7 +12,7 @@ router.get(
       .custom((id) => isValidObjectId(id))
       .withMessage("Valid class id must be provided"),
   ],
-  getOneContestentHandler
+  getOneContestantHandler
 );
 
-export { router as getOneContestentRouter };
+export { router as getOneContestantRouter };

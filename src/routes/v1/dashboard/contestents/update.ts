@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { param } from "express-validator";
-import { updateContestentHandler } from "../../../../controllers/v1/dashboard/contestents/update";
+import { updateContestantHandler } from "../../../../controllers/v1/dashboard/contestents/update";
 import { isValidObjectId } from "../../../../services/object-id-validate";
 
 const router = Router();
@@ -12,7 +12,7 @@ router.patch(
       .custom((id) => isValidObjectId(id))
       .withMessage("Valid class id must be provided"),
   ],
-  updateContestentHandler
+  updateContestantHandler
 );
 
-export { router as updateContestentRouter };
+export { router as updateContestantRouter };
