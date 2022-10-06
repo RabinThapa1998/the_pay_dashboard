@@ -23,7 +23,7 @@ const deleteProgram = async (req: Request, res: Response) => {
 
     return res.status(200).json({
       message: "program deleted successfully",
-      data: program,
+      program: program.deletedCount,
       contestant: _contestant.deletedCount,
     });
   } catch (error) {
