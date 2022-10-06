@@ -9,7 +9,7 @@ const getProgram = async (req: Request, res: Response) => {
       throw new BadRequestError("No programs found!");
     }
 
-    return res.status(200).json({ message: "Programs", data: _program });
+    return res.status(200).json({ data: _program });
   } catch (err) {
     throw new BadRequestError("programs error");
   }

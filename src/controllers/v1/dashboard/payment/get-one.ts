@@ -10,7 +10,7 @@ const getOnePayment = async (req: Request, res: Response) => {
     if (!_payment) {
       throw new BadRequestError("payment not found");
     }
-    res.status(200).json({ message: "payment", data: _payment });
+    res.status(200).json({ data: _payment });
   } catch (err: any) {
     throw new BadRequestError(
       err.message || "Failed Backend, unable to get one payment"
