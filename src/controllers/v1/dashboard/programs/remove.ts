@@ -6,7 +6,6 @@ import { Contestant } from "../../../../models/contestants";
 const deleteProgram = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    console.log("🚀 ~ file: remove.ts ~ line 9 ~ deleteProgram ~ id", id);
 
     const _program = await Program.findById(id);
 
@@ -14,10 +13,6 @@ const deleteProgram = async (req: Request, res: Response) => {
       throw new BadRequestError("Program not found");
     }
     const _contestant = await Contestant.deleteMany({ program: id });
-    console.log(
-      "🚀 ~ file: remove.ts ~ line 16 ~ deleteProgram ~ _contestant",
-      _contestant
-    );
 
     const program = await Program.deleteOne({ _id: id });
 
