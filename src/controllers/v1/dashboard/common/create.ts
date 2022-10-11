@@ -10,9 +10,7 @@ const createCommon = async (req: Request, res: Response) => {
 
     const result = await cloudinary.uploader.upload(req.file.path);
 
-    return res
-      .status(200)
-      .json({ message: "File Uploaded Successfully", data: result });
+    return res.status(200).json(result);
   } catch (error: any) {
     throw new BadRequestError(
       error.message || "Failed to upload file. Debug Backend!"
