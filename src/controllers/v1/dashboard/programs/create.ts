@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from "express";
-import { AnyArray } from "mongoose";
 import { BadRequestError } from "../../../../common/errors/bad-request-error";
 import { Program } from "../../../../models/programs";
 
