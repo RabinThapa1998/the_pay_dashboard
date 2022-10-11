@@ -4,5 +4,5 @@ import { createCommonHandler } from "../../../../controllers/v1/dashboard/common
 import upload from "../../../../utils/multer";
 
 const router = Router();
-router.post("/", upload.single("image"), createCommonHandler);
+router.post("/", upload.single("file"), createCommonHandler);
 export { router as createCommonRouter };
