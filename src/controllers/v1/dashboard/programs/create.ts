@@ -4,7 +4,7 @@ import { Program } from "../../../../models/programs";
 
 const createPrograms = async (req: Request, res: Response) => {
   try {
-    const { name, desc, image_url } = req.body;
+    const { name, desc, image_url, payment_schema } = req.body;
 
     const program = await Program.findOne({ name: name });
     if (program) {
@@ -15,6 +15,7 @@ const createPrograms = async (req: Request, res: Response) => {
       name,
       desc,
       image_url,
+      payment_schema,
     }).save();
 
     return res

@@ -5,12 +5,20 @@ export interface programAttrs {
   name: string;
   desc?: string;
   image_url?: string;
+  payment_schema?: {
+    votes?: number;
+    cost?: number;
+  }[];
 }
 
 export interface ProgramDoc extends Document, programAttrs {
   name: string;
   desc: string;
   image_url: string;
+  payment_schema: {
+    votes: number;
+    cost: number;
+  }[];
   active: boolean;
   createdAt: Date;
   updatedAt: Date;
@@ -35,6 +43,18 @@ const programSchema = new Schema<ProgramDoc>(
       default:
         "https://bitpointx.s3-ap-southeast-1.amazonaws.com/config/transparent_logo.png",
     },
+    payment_schema: [
+      {
+        votes: {
+          type: Number,
+          default: 2,
+        },
+        cost: {
+          type: Number,
+          default: 12,
+        },
+      },
+    ],
     active: {
       type: Boolean,
       default: true,
