@@ -1,13 +1,31 @@
 import { Document, Schema, Model, connect, model } from "mongoose";
 
+const voteDefault = [
+  {
+    votes: 2,
+    cost: 12,
+  },
+  {
+    votes: 5,
+    cost: 30,
+  },
+  {
+    votes: 10,
+    cost: 60,
+  },
+  {
+    votes: 20,
+    cost: 120,
+  },
+];
 // creating an interface representing a document in mongodb
 export interface programAttrs {
   name: string;
   desc?: string;
   image_url?: string;
   payment_schema?: {
-    votes?: number;
-    cost?: number;
+    votes: number;
+    cost: number;
   }[];
 }
 
@@ -43,18 +61,10 @@ const programSchema = new Schema<ProgramDoc>(
       default:
         "https://bitpointx.s3-ap-southeast-1.amazonaws.com/config/transparent_logo.png",
     },
-    payment_schema: [
-      {
-        votes: {
-          type: Number,
-          default: 2,
-        },
-        cost: {
-          type: Number,
-          default: 12,
-        },
-      },
-    ],
+    payment_schema: {
+      type: [],
+      default: voteDefault,
+    },
     active: {
       type: Boolean,
       default: true,
