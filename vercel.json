@@ -1,15 +1,6 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "./dist/server.js",
-      "use": "@now/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "./dist/(.*)",
-      "dest": "server.js"
-    }
-  ]
+  "name": "the-pay",
+  "builds": [{ "src": "server.js", "use": "@vercel/node" }],
+  "routes": [{ "src": "/(.*)", "dest": "/server.js" }]
 }
