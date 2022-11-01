@@ -4,7 +4,7 @@ import { Program } from "../../../../models/programs";
 
 const updateProgram = async (req: Request, res: Response) => {
   try {
-    const { name, desc, image_url } = req.body;
+    const { name, desc, image_url, payment_schema } = req.body;
 
     const program = await Program.findById(req.params.id);
     if (!program) {
@@ -14,6 +14,7 @@ const updateProgram = async (req: Request, res: Response) => {
     if (name) program.name = name;
     if (desc) program.desc = desc;
     if (image_url) program.image_url = image_url;
+    if (payment_schema) program.payment_schema = payment_schema;
     await program.save();
 
     return res
