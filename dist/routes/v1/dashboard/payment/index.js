@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.indexPaymentRouter = void 0;
+const express_1 = require("express");
+const create_1 = require("./create");
+const get_1 = require("./get");
+const update_1 = require("./update");
+const get_one_1 = require("./get-one");
+const router = (0, express_1.Router)();
+exports.indexPaymentRouter = router;
+router.use(create_1.createPaymentRouter);
+router.use(get_1.getPaymentsRouter);
+router.use(update_1.updatePaymentRouter);
+router.use(get_one_1.getOnePaymentRouter);

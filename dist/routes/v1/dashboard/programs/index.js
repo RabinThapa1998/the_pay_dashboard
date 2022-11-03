@@ -1,0 +1,16 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.indexProgramRouter = void 0;
+const create_1 = require("./create");
+const remove_1 = require("./remove");
+const update_1 = require("./update");
+const get_1 = require("./get");
+const get_one_1 = require("./get-one");
+const express_1 = require("express");
+const router = (0, express_1.Router)();
+exports.indexProgramRouter = router;
+router.use(create_1.createProgramRouter);
+router.use(remove_1.removeProgramRouter);
+router.use(update_1.updateProgramRouter);
+router.use(get_1.getProgramRouter);
+router.use(get_one_1.getOneProgramRouter);

@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.indexUserRouter = void 0;
+const signin_1 = require("./signin");
+const signup_1 = require("./signup");
+const express_1 = require("express");
+const router = (0, express_1.Router)();
+exports.indexUserRouter = router;
+router.use(signin_1.signInUserRouter);
+router.use(signup_1.signUpUserRouter);
